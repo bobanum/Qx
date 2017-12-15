@@ -1,0 +1,144 @@
+body, html {
+	margin:0px;
+	padding:0px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+table.qe {
+	border-collapse:collapse;
+	font-size:12px;
+	float:left;
+	width:3.7in;
+	height:4.95in;
+	margin:.25in;
+}
+table.qe tbody {
+	border:3px solid;
+}
+table.qe tr.identification td.reponse span {
+  float:right;
+  font-size:.7em;
+  zzzmargin-top:0.2em;
+}
+table.qe td {
+	border:1px solid;
+  /* line-height:1.2em */
+}
+th {
+	text-align:left;
+	font-family:impact;
+	font-weight:normal;
+	height:1px;
+}
+th.titre {
+	font-size:32px;
+}
+th.pied {
+	font-size:12px;
+}
+td {
+	padding:0.03in;
+	padding:0 0.4em;
+}
+.code {
+	font-family:"Courier New", Courier, monospace;
+	font-size:smaller;
+}
+td.reponse {
+	width:8em;
+}
+td.reponse p{
+	margin:0px;
+}
+span.solution{
+	color:#FF0000;
+}
+/* Changé pour span uniquement
+td.reponse *, span.solution{
+	color:#FF0000;
+}*/
+td.reponse br{
+	display:inherit;
+}
+tr.cacher {
+	color:#999999;
+}
+tr.cacher td{
+	overflow:hidden;
+  height:10px;
+}
+tr.bonus > td:first-child:before {
+	content:"Bonus - ";
+}
+tr.identification td {
+	font-size:10pt;
+	font-weight:bold;
+	vertical-align:middle;
+	height:36px;
+	border:3px solid black !important;
+}
+/* Affichage des controles */
+div.controles{
+	border:1px solid #CCCC99;
+	background-color:#FFFFCC;
+	position:absolute;
+	right:10px;
+	top:10px;
+	padding:2px;
+	font-size:10px;
+}
+div.controles h1 {
+	background-color:#CCCC99;
+	margin:0px;
+	padding:2px;
+	font-size:14px;
+	text-align:center;
+}
+div.controles div.bouton {
+  background-color:#CCC;
+  border:1px outset black;
+  cursor:pointer;
+  text-align:center;
+  padding:2px;
+}
+tbody.cacher {
+  color:#999999;
+}
+td[colspan] div {
+	border-top:1px dotted black;
+	line-height:1.6em;
+	margin-top:0.1em;
+}
+solution.invisible>span {
+}
+@page {
+	width: 8.5in;
+	height: 11in;
+	margin: 0;
+}
+/* POUR L'IMPRESSION */
+@media screen {
+	table.print {
+		display:none;
+	}
+}
+@media print {
+/* Changé pour span uniquement
+	td.reponse *, span.solution{
+		display:none;
+	}*/
+	span.solution{
+		display:none;
+	}
+	td.reponse br{
+		display:inherit;
+	}
+	tr.cacher, tbody.cacher {
+		display:none;
+	}
+	div.controles {
+		display:none;
+	}
+  #qe {
+		display:none;
+  }
+}
