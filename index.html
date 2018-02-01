@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<!--
+balise span.solution (On peut en mettre plusieurs)
+  - pre et post : attributs de solution !!
+  - hauteur
+  - largeur : Pour créer des colonnes
+
+ attribut "cacher"
+ class code
+
+-->
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Questions Express</title>
+	<link rel="stylesheet" type="text/css" href="qe.css" id="ss" />
+	<script src="Qe.js"></script>
+	<script src="Feuillet.js"></script>
+	<script src="Question.js"></script>
+</head>
+
+<body title="Questions Express">
+	<div class="interface">
+		<div class="page">
+			<div title="2-1" class="feuillet">
+				<div class="question">
+					<div>Complétez&nbsp;: Une page Web est composées de plusieurs <span style="border:1px solid black;">???</span> imbriquées.</div>
+					<div class="reponse" data-largeur="30%">
+						<span class="solution">balises</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Complétez&nbsp;: Chaque balise peut avoir des <span style="border:1px solid black;">???</span> auxquels on donne des valeurs.</div>
+					<div class="reponse">
+						<span class="solution">attributs</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>On reconnaît une balise à ces 2 signes typographiques&nbsp;:</div>
+					<div class="reponse">
+						<span class="solution">&lt;</span>
+						<span class="solution">&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Pour fermer le contenu de la balise <code>&lt;p&gt;</code>, on doit ajouter à la fin cette balise fermante&nbsp;:</div>
+					<div class="reponse">
+						<span class="solution">&lt;/p&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux? Toutes les balises doivent être fermées.</div>
+					<div class="reponse">
+						<span class="solution">vrai</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux? On ne peut imbriquer plus de 256 balises une dans l'autre.</div>
+					<div class="reponse">
+						<span class="solution">faux</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Le contenu d'une balise peut être une de ces 2 choses&nbsp;:</div>
+					<div class="reponse">
+						<span class="solution">Texte</span>
+						<span class="solution">Balises</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Écrivez la balise sans contenu «hr»</div>
+					<div class="reponse">
+						<span class="solution">&lt;hr /&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Lesquelles de ces balises ne doit-on PAS utiliser? <code>&lt;p&gt; &lt;div&gt; &lt;font&gt; &lt;strong&gt; &lt;center&gt; &lt;span&gt; &lt;bold&gt;</code></div>
+					<div class="reponse">
+						<span class="solution">&lt;font&gt;</span>
+						<span class="solution">&lt;center&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Une entitée doit commencer par ___ et se terminer par ___.</div>
+					<div class="reponse">
+						<span class="solution">&amp;</span>
+						<span class="solution">;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Donnez le nom ou l'acronyme de l'organisme qui régit les normes du Web.</div>
+					<div class="reponse">
+						<span class="solution">W3C</span>
+					</div>
+				</div>
+			</div>
+			<div title="3-Quiz" class="feuillet">
+				<!-- Tailles : 7 et 11 -->
+				<div class="question">
+					<div colspan="2">Composez une balise avec un attribut bien formée. Choisissez les noms, les valeurs et le contenu (valides) que vous voulez.
+						<span pre="" class="solution">&lt;patate</span>
+						<span pre="" class="solution">navet=</span>
+						<span pre="" class="solution">"carotte"&gt;</span>
+						<span pre="" class="solution">betterave</span>
+						<span pre="" class="solution">&lt;/patate&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div colspan="2">Composez une balise sans contenu bien formée. Choisissez le nom (valide) que vous voulez.
+						<span class="solution">&lt;br /&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Nommez les balises génériques de type «bloc» et de type «continue»</div>
+					<div class="reponse">
+						<span class="solution">div</span>
+						<span class="solution">span</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Complétez&nbsp;: On doit fermer la _______ balise restée ouverte</div>
+					<div class="reponse">
+						<span class="solution">dernière</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Où se trouve le DOCTYPE?</div>
+					<div class="reponse">
+						<span class="solution">Au début</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Qui suis-je? Je suis la balise qui gère la façon d'afficher la page, mais mon contenu ne s'affiche pas dans la page</div>
+					<div class="reponse">
+						<span class="solution">head</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Qui suis-je? Mon contenu s'affiche à 3 endroits, mais pas dans la page</div>
+					<div class="reponse">
+						<span class="solution">title</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Qui suis-je? On doit mettre dans mon contenu ce qui s'affichera dans la page.</div>
+					<div class="reponse">
+						<span class="solution">body</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux? On doit faire attention à l'ordre des attributs dans une balise.</div>
+					<div class="reponse">
+						<span class="solution">faux</span>
+					</div>
+				</div>
+			</div>
+			<div title="3-1" class="feuillet">
+				<div class="question">
+					<div>Quels sont les 2 attributs obligatoires de la balise &lt;img&gt;</div>
+					<div class="reponse">
+						<span class="solution">src</span>
+						<span class="solution">alt</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quels sont les 2 attributs nécessaires mais non obligatoires de la balise &lt;img&gt;</div>
+					<div class="reponse">
+						<span class="solution">width</span>
+						<span class="solution">height</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Puisqu'elle n'a pas de contenu, la balise &lt;img&gt; doit se terminer de cette façon</div>
+					<div class="reponse">
+						<span class="solution">/&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Pour remonter dans l'arborescence de fichiers, on doit utiliser ceci?</div>
+					<div class="reponse">
+						<span class="solution">../</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Par quoi commence une adresse ABSOLUE?</div>
+					<div class="reponse">
+						<span class="solution">http://</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Sur quoi pointe RÉELLEMENT l'adresse suivante&nbsp;: images/animaux/../requins/../../dossier/../chat.jpg</div>
+					<div class="reponse">
+						<span class="solution">chat.jpg</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel signe typographique sépare le nom et la valeur d'une propriété CSS?</div>
+					<div class="reponse">
+						<span class="solution">:</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel signe typographique termine une propriété CSS?</div>
+					<div class="reponse">
+						<span class="solution">;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut utilise-t-on pour ajouter de la couleur ou une bordure à un élément?</div>
+					<div class="reponse">
+						<span class="solution">style</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Comment dispose-t-on les propriétés dans l'attribut <code>style</code> lorsqu'on en a plusieurs?</div>
+					<div class="reponse">
+						<span class="solution">en dessous</span>
+					</div>
+				</div>
+			</div>
+			<div title="3-Propriétés" class="feuillet">
+				<div class="question">
+					<div colspan="2" style="font-weight:bold">Nommez la bonne propriété&nbsp;:</div>
+				</div>
+				<div class="question">
+					<div>On se sert de moi si on veut mettre le contenu d'une cellule de tableau en haut.</div>
+					<div class="reponse">
+						<span class="solution">vertical-align</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Je détermine l'interlignage d'un paragraphe.</div>
+					<div class="reponse">
+						<span class="solution">line-height</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Je donne une épaisseur à la bordure inférieure.</div>
+					<div class="reponse">
+						<span class="solution">border-bottom-width</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Je mets tout le texte en majuscule.</div>
+					<div class="reponse">
+						<span class="solution">text-transform</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Je règle tous les attributs d'une bordure en une seule étape.</div>
+					<div class="reponse">
+						<span class="solution">border</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>J'applique une image à un &lt;li&gt;</div>
+					<div class="reponse">
+						<span class="solution">liste-style-image</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Je gère la couleur d'arrière-plan (seulement ça)</div>
+					<div class="reponse">
+						<span class="solution">background-color</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Je représente l'espace entre le texte et sa bordure</div>
+					<div class="reponse">
+						<span class="solution">padding</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Je peux enlever le gras (bold) d'un &lt;h1&gt;</div>
+					<div class="reponse">
+						<span class="solution">font-weight</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Je donne de la couleur aux textes</div>
+					<div class="reponse">
+						<span class="solution">color</span>
+					</div>
+				</div>
+			</div>
+			<div title="4-0" class="feuillet">
+				<div class="question">
+					<div>Par quoi doit commencer une adresse absolue?</div>
+					<div class="reponse">
+						<span class="solution">http://</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>À l'aide de quels caractères "sort-on" d'un dossier dans une adresse relative?</div>
+					<div class="reponse">
+						<span class="solution">../</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise permet d'ajouter une image?</div>
+					<div class="reponse">
+						<span class="solution">img</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut de la balise img doit recevoir une adresse comme valeur?</div>
+					<div class="reponse">
+						<span class="solution">src</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut de la balise img doit nécessairement être présent pour que la page soit valide?</div>
+					<div class="reponse">
+						<span class="solution">alt</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Si mon image mesure 200 pixels de large et 300 pixels de haut, quelles devraient être les valeurs respectives des attributs width et height?</div>
+					<div class="reponse">
+						<span class="solution">200</span>
+						<br/>
+						<span class="solution">300</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise permet de mettre en gras? en italic?</div>
+					<div class="reponse">
+						<span class="solution">&lt;strong&gt;</span>
+						<span class="solution">&lt;em&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise a-t-on utilisé pour citer le titre d'un livre?</div>
+					<div class="reponse">
+						<span class="solution">&lt;cite&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut de balise doit avoir une valeur unique dans la page? id ou class?</div>
+					<div class="reponse">
+						<span class="solution">id</span>
+					</div>
+				</div>
+			</div>
+			<div title="4-0-1" class="feuillet">
+				<div class="question">
+					<div>Quelle balise a-t-on utilisée pour ajouter du CSS à notre page?</div>
+					<div class="reponse">
+						<span class="solution">&lt;style&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>À l'intérieur de quel élément HTML doit-on nécessairement la retrouver?</div>
+					<div class="reponse">
+						<span class="solution">&lt;head&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Complétez&nbsp;: Dans la balise &lt;style&gt; on retrouve des _______ CSS qui, elles, contiennent les _______ CSS.</div>
+					<div class="reponse">
+						<span class="solution">règles</span>
+						<span class="solution">propriétés</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Complétez&nbsp;: Une propriété CSS commence par un nom, suivi de ___, suivi de sa valeur et se termine par ___.</div>
+					<div class="reponse">
+						<span class="solution">:</span>
+						<span class="solution">;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux? On peut mettre plusieurs&hellip;
+						<br/>&hellip; balises &lt;style&gt; dans une page.
+						<br/>&hellip; règles CSS dans une balise &lt;style&gt;.
+						<br/>&hellip; propriétés CSS dans une règle CSS.</div>
+					<div class="reponse">
+						<br/>
+						<span class="solution">vrai</span>
+						<span class="solution">vrai</span>
+						<span class="solution">vrai</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Comment s'appelle ce qui se trouve à gauche de l'accolade ouvrante dans une règle CSS?</div>
+					<div class="reponse">
+						<span class="solution">sélecteur</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Dans un sélecteur, quel signe typographique utilise-t-on pour identifier&hellip;
+						<br/>&hellip; une balise?
+						<br/>&hellip; une class?
+						<br/>&hellip; un id?</div>
+					<div class="reponse">
+						<br/>
+						<span class="solution"></span>
+						<span class="solution">.</span>
+						<span class="solution">#</span>
+					</div>
+				</div>
+			</div>
+			<div title="5-Adresses1" class="feuillet">
+				<div class="question">
+					<div>Donner la portion COMPLÈTE du protocole dans l'adresse de l'exemple vu en classe.</div>
+					<div class="reponse">
+						<span class="solution">http://</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Dans l'exemple vu en classe, par quoi séparait-on le nom de l'ancre du nom du fichier?</div>
+					<div class="reponse">
+						<span class="solution">#</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Donnez le ou les signes typographiques d'une adresse Web permettant de...
+						<br/>... remonter dans l'arborescence :
+						<br/>... définir une adresse relative au site :</div>
+					<div class="reponse">
+						<br/>
+						<br/>
+						<span class="solution"></span>
+						<span class="solution"></span>
+						<br/>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux? Une adresse relative commence TOUJOURS par «http://».</div>
+					<div class="reponse">
+						<span class="solution">faux</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Sur quoi pointe RÉELLEMENT l'adresse suivante&nbsp;: images/animaux/../requins/../../dossier/../chat.jpg</div>
+					<div class="reponse">
+						<span class="solution">chat.jpg</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Lorsque le nom de fichier est absent de l'adresse, lequel est utilisé par défaut?</div>
+					<div class="reponse">
+						<span class="solution">index.htm</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise permet de mettre une image dans une page?</div>
+					<div class="reponse">
+						<span class="solution">img</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle est l'attribut de cette balise qui reçoit une URL?</div>
+					<div class="reponse">
+						<span class="solution">src</span>
+					</div>
+				</div>
+			</div>
+			<div title="5-Adresses2" class="feuillet">
+				<div class="question">
+					<div>Quels sont les 2 attributs nécessaires mais non obligatoires de la balise &lt;img&gt;</div>
+					<div class="reponse">
+						<span class="solution">width</span>
+						<span class="solution">height</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise permet de mettre un lien dans une page?</div>
+					<div class="reponse">
+						<span class="solution">a</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel est son attribut principal?</div>
+					<div class="reponse">
+						<span class="solution">href</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux? Le texte écrit sur un lien doit être placé dans l'attribut "text" de balise?</div>
+					<div class="reponse">
+						<span class="solution">faux</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>A quoi reconnaît-on habituellement un lien dans une page?</div>
+					<div class="reponse">
+						<span class="solution">bleue</span>
+						<span class="solution">souligné</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Que se passe-t-il lorsqu'on place une image dans un lien?</div>
+					<div class="reponse">
+						<span class="solution">bordure bleue</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux? Si je place un lien dans un bloc de texte, il s'intégrera au bloc de texte sans briser la mise en page.</div>
+					<div class="reponse">
+						<span class="solution">vrai</span>
+					</div>
+				</div>
+			</div>
+			<div title="7-Couleurs" class="feuillet">
+				<div class="question">
+					<div>Combien de chiffres compte la notation hexadécimale&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">16</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle lettre représente le dernier chiffre de la notation hexadécimale&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">F</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle sont (en ordre) les couleurs désignées par les 3 paires de chiffres hexadécimaux d'une couleur&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">Red</span>
+						<span class="solution">Green</span>
+						<span class="solution">Blue</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelles sont les 6 chiffres hexadécimaux de la palette Web&nbsp;?</div>
+					<div class="reponse">
+						<span largeur="3" class="solution">00</span>
+						<span largeur="3" class="solution">33</span>
+						<span largeur="3" class="solution">66</span>
+						<span largeur="3" class="solution">99</span>
+						<span largeur="3" class="solution">CC</span>
+						<span largeur="3" class="solution">FF</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Donnez la recette <strong>hexadécimale</strong> de la couleur rouge à mettre dans <code>background-color</code>.</div>
+					<div class="reponse">
+						<span class="solution">#FF0000</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Donnez la recette <strong>décimale de la couleur</strong> verte à mettre dans <code>background-color</code>.</div>
+					<div class="reponse">rgb(0,255,0)
+						<span class="solution"></span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle est la plus grande valeur acceptée dans une couleur en <strong>décimal</strong>&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">255</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle est la plus grande valeur acceptée dans une couleur en <strong>hexadécimal</strong>&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">FF</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Donnez la recette <strong>hexadécimale</strong> du noir et du blanc.</div>
+					<div class="reponse">
+						<span class="solution">#000000</span>
+						<span class="solution">#FFFFFF</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Donnez trois couleurs nommées.</div>
+					<div class="reponse">
+						<span class="solution"></span>
+						<span class="solution"></span>
+						<span class="solution"></span>
+					</div>
+				</div>
+			</div>
+			<div title="7-0" class="feuillet">
+				<div class="question">
+					<div>Quel est l'attribut de la balise &lt;img&gt; qui permet de donner l'adresse de l'image&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">src</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Pourquoi la balise &lt;img&gt; doit-elle se terminer par /&gt;&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">sans contenu</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle propriété CSS donne de la couleur au texte&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">color</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle propriété CSS représente l'espace à l'intérieur de l'élément entre le texte et sa bordure&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">padding</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle propriété CSS représente l'espace à l'extérieur de l'élément entre sa bordure et les éléments qui l'entourent&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">margin</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Que doit-on ajouter au nom de la propriété <code>margin</code> pour qu'elle ne s'applique qu'à la gauche de l'élément&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">-left</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelles sont les 3 composantes d'une bordure&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">-width</span>
+						<span class="solution">-style</span>
+						<span class="solution">-color</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>D'après vous, peut-on utiliser l'attribut style sur une balise &lt;img&gt;&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">oui</span>
+					</div>
+				</div>
+			</div>
+			<div title="7-feuilles" class="feuillet">
+				<!-- Tailles : 9 et 11 -->
+				<div class="question">
+					<div>Quelle est l'adresse du site Web où l'on peut récupérer du lorem ipsum aléatoire&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">lipsum.com</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Dans un sélecteur, comment reconnait-on une classe&nbsp;? Un id&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">point</span>
+						<span class="solution">dièze</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel est le nom de l'attribut qui me permet d'ajouter une classe à une balise&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">class</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Comment sépare-t-on des sélecteurs juxtaposés&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">virgule</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Comment doit-on disposer les propriétés dans une feuille de styles?</div>
+					<div class="reponse">
+						<span class="solution">en dessous</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise vais-je utiliser pour appliquer mes styles à tout un site Web?</div>
+					<div class="reponse">
+						<span class="solution">style</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel signe typographique utilise-t-on pour indiquer une &quot;balise dans une balise&quot;?</div>
+					<div class="reponse">
+						<span class="solution">espace</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel est le nom de l'attribut qui est commun aux balises <code>&lt;link&gt;</code> et <code>&lt;style&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution">type</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut utilise-t-on pour appeler la feuille de style dans la balise <code>&lt;link&gt;</code></div>
+					<div class="reponse">
+						<span class="solution">href</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle est la valeur de l'attribut <code>rel</code> de la balise <code>&lt;link&gt;</code>&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">stylesheet</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux? On doit mettre la balise <code>&lt;style&gt;</code> dans le fichier externe <code>.css</code></div>
+					<div class="reponse">
+						<span class="solution">faux</span>
+					</div>
+				</div>
+			</div>
+			<div title="6-0-1" class="feuillet">
+				<div class="question">
+					<div colspan="2" class="large">À quel endroit retrouve-t-on le &quot;contenu&quot; d'une balise?
+						<span class="solution">entre la balise ouvrante et la balise fermante</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>D'après vous, peut-on utiliser la propriété <code>color</code> sur la balise <code>&lt;title&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution">non</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Dans une règle CSS, à l'intérieur de quels signes typographiques (dans l'ordre) doit-on mettre les propriétés CSS&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">{</span>
+						<span class="solution">}</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Combien d'attributs de balise doit avoir&hellip;
+						<br />&hellip;la balise <code>&lt;style&gt;</code>?
+						<br />&hellip;la balise <code>&lt;link&gt;?</code></div>
+					<div class="reponse">
+						<br />
+						<span class="solution">1 ou 2</span>
+						<span class="solution">3 ou 4</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Vrai ou faux?
+						<br />&hellip;Il est inutile de créer une règle CSS pour la balise <code>&lt;body&gt;</code> puisqu'il n'y en a qu'une seule dans une page.
+						<br />&hellip;Quand on sépare des sélecteurs par une virgule, la règle CSS s'appliquera à tous ces sélecteurs.</div>
+					<div class="reponse">
+						<br />
+						<span class="solution"></span>
+						<br />
+						<br />
+						<span class="solution"></span>
+						<br />
+						<br />
+					</div>
+				</div>
+				<div class="question">
+					<div>Où doit-on mettre les balises <code>&lt;style&gt;</code> et <code>&lt;link&gt;?</code></div>
+					<div class="reponse">
+						<span class="solution">head</span>
+					</div>
+				</div>
+			</div>
+			<div title="6-0-2" class="feuillet">
+				<div class="question">
+					<div>Qui utilise des sélecteurs : La <strong>balise</strong> <code>&lt;style&gt;</code> ou l'<strong>attribut</strong> <code>style</code>?</div>
+					<div class="reponse">
+						<span class="solution">balise</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Comment doit-on nommer le fichier d'une feuille de styles?</div>
+					<div class="reponse">
+						<span class="solution">.css</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Comment peut-on différencier un <strong>attribut</strong> de balise d'une propriété CSS?</div>
+					<div class="reponse">
+						<span class="solution">= ou "</span>
+					</div>
+				</div>
+				<div class="question">
+					<div colspan="2">Je veux faire une bordure noire de 1 pixel pleine.
+						<br />Que dois-je écrire dans mon attribut style?
+						<span class="solution">border:1px solid black;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on mettre plusieurs valeurs simultanément à la propriété <code>margin</code>?</div>
+					<div class="reponse">
+						<span class="solution">oui</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Au lieu de faire du copier-coller de styles d'une page à l'autre, quelle balise dois-je utiliser?</div>
+					<div class="reponse">
+						<span class="solution">link</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Corrigez cette couleur: &quot;<code># FFFFCC</code>&quot;</div>
+					<div class="reponse">
+						<span class="solution">#FFFFCC</span>
+					</div>
+				</div>
+				<div class="question">
+					<div colspan="2">Comment doit-on écrire la valeur (l'adresse du fichier) d'une propriété <code>background-image</code>?
+						<span class="solution">url(adresse)</span>
+					</div>
+				</div>
+			</div>
+			<div title="5-listes" class="feuillet">
+				<div class="question">
+					<div>Quelles sont les 2 types de listes?</div>
+					<div class="reponse">
+						<span class="solution">à puce</span>
+						<span class="solution">numérotée</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelles sont les 2 balises qui permettent d'ajouter une liste à une page?</div>
+					<div class="reponse">
+						<span class="solution">&lt;ul&gt;</span>
+						<span class="solution">&lt;ol&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise permet d'ajouter un élément à une liste?</div>
+					<div class="reponse">
+						<span class="solution">&lt;li&gt;</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut permet de changer le numéro de départ d'une liste numérotée?</div>
+					<div class="reponse">
+						<span class="solution">start</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut permet de changer le numéro d'un élément?</div>
+					<div class="reponse">
+						<span class="solution">value</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle propriété me permettrait de changer la puce d'une liste à puces en nombre?</div>
+					<div class="reponse">
+						<span class="solution">list-style-type</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Est-il possible de remplacer&hellip;
+						<br />&hellip;la puce d'une liste par un autre caractère? Ex.: * ou -
+						<br />&hellip;le point par une parenthèse dans une liste numérotée? Ex.: a)
+						<br />&hellip;la puce ou bien le nombre d'une liste par une image?</div>
+					<div class="reponse">
+						<br />
+						<span class="solution">non</span>
+						<br />
+						<span class="solution">non</span>
+						<br />
+						<span class="solution">oui</span>
+						<br />
+					</div>
+				</div>
+				<div class="question">
+					<div>Est-ce une bonne idée d'utiliser une liste pour créer un menu&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">oui</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on changer les chiffres d'une liste par des lettres&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">oui</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on mettre une balise <code>&lt;ul&gt;</code> dans le contenu d'une balise <code>&lt;li&gt;</code></div>
+					<div class="reponse">
+						<span class="solution">oui</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on mettre une balise <code>&lt;ul&gt;</code> directement dans le contenu d'une balise <code>&lt;ol&gt;</code></div>
+					<div class="reponse">
+						<span class="solution">non</span>
+					</div>
+				</div>
+			</div>
+			<div title="6-liens" class="feuillet">
+				<div class="question">
+					<div>Quelle balise sert à insérer un hyperlien? </div>
+					<div class="reponse">
+						<span class="solution">a</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Cette balise doit-elle se terminer par&nbsp;<code>/&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution">non</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel est l'attribut obligatoire de cette balise?</div>
+					<div class="reponse">
+						<span class="solution">href</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on mettre un lien sur une image? </div>
+					<div class="reponse">
+						<span class="solution">oui</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Que doit-on ajouter à un lien pour que celui-ci s'ouvre dans une autre fenêtre?</div>
+					<div class="reponse">
+						<span class="solution">target et/ou _blank</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut doit-on utiliser pour créer un point d'ancrage dans une page?</div>
+					<div class="reponse">
+						<span class="solution">id</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>À quel signe typographique reconnaît-on un lien vers un point d'ancrage?</div>
+					<div class="reponse">
+						<span class="solution">#</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Pour faire un lien vers une page se trouvant à l'extérieur du dossier de la page courante, que dois-je retrouver dans mon adresse?</div>
+					<div class="reponse">
+						<span class="solution">../</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Que ce passe-t-il visuellement à un texte qui se trouve à l'intérieur d'un lien?</div>
+					<div class="reponse">
+						<span class="solution">souligné</span>
+						<span class="solution">bleu</span>
+					</div>
+				</div>
+				<div class="question">
+					<div colspan="2">Lesquelles de ces balises ne peuvent se retrouver dans un lien selon le W3C :
+						<br /><code>&lt;span&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;em&gt;</code>
+						<span val="3" cacher="true" class="solution"></span>
+					</div>
+				</div>
+
+			</div>
+			<div title="5-tableau" class="feuillet">
+				<div class="question">
+					<div>Quelle balise insert un tableau
+						<br/>dans une page?
+						<br/>Quels en sont les 3 attributs habituels?</div>
+					<div class="reponse">
+						<span class="solution">table</span>
+						<span class="solution">border</span>
+						<span class="solution">cellpadding</span>
+						<span class="solution">cellspacing</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Où doit-on mettre la balise <code>&lt;caption&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution">après table</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Dans quel ordre doit-on retrouver
+						<br/>les balises suivantes :
+						<br />1 <code>&lt;thead&gt;</code> 2 <code>&lt;tbody&gt;</code> 3 <code>&lt;tfoot&gt;</code></div>
+					<div class="reponse">
+						<span class="solution">132</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle est la seule balise permise dans les balises ci-dessus?</div>
+					<div class="reponse">
+						<span class="solution">tr</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel attribut utilise-t-on pour fusionner plusieurs cellules une à côté de l'autre? Une en dessous de l'autre?</div>
+					<div class="reponse">
+						<span class="solution">colspan</span>
+						<span class="solution">rowspan</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise de tableau a pour effet d'écrire le contenu en gras et centré?
+						<br /> On la met à la place de quelle autre balise?</div>
+					<div class="reponse">
+						<span class="solution">th</span>
+						<span class="solution">td</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Laquelle de ces balises va nécessairement à l'intérieur de l'autre: <code>&lt;tr&gt;</code> ou <code>&lt;td&gt;</code>&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">td</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on mettre un autre tableau dans une cellule de tableau&nbsp;?</div>
+					<div class="reponse">
+						<span class="solution">oui</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelles sont les 2 utilités des tableaux?</div>
+					<div class="reponse">
+						<span class="solution">données</span>
+						<span class="solution">mise en page</span>
+					</div>
+				</div>
+			</div>
+			<div title="6-tableau2" class="feuillet">
+				<div class="question">
+					<div>Comment s'appelle l'espacement que l'on doit mettre pour faire la mise en page du code?</div>
+					<div class="reponse">
+						<span class="solution">Indentation</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>À quoi s'appliquera une propriété border donnée à une balise <code>&lt;table&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution">Tout le tableau</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle propriété CSS fusionne les bordures de 2 cellules adjacentes? À quelle balise doit-on l'appliquer? </div>
+					<div class="reponse">
+						<span class="solution">border-collapse</span>
+						<span class="solution">table</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel signe typographique indique la relation "à l'intérieur de" dans un sélecteur?</div>
+					<div class="reponse">
+						<span class="solution">Espace</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle propriété CSS permet de centrer verticalement dans une cellule?</div>
+					<div class="reponse">
+						<span class="solution">vertical-align</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Pour créer un quadrillage ordinaire, à quelle balise doit-on appliquer la propriété border?</div>
+					<div class="reponse">
+						<span class="solution">td ou th</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle propriété sert seulement à <code>&lt;caption&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution"></span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Pour donner une largeur et une hauteur à une cellule, quelles propriétés CSS utilise-t-on?</div>
+					<div class="reponse">
+						<span class="solution">width</span>
+						<span class="solution">height</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on enlever le gras et le centré aux <code>&lt;th&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution">Oui</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on mettre des couleurs de bordure différentes à chaque <code>&lt;td&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution">Oui</span>
+					</div>
+				</div>
+			</div>
+			<div title="8-0" class="feuillet">
+				<div class="question">
+					<div>Quel est le nombre minimum de balises dont on a besoin pour faire un tableau?</div>
+					<div class="reponse">
+						<span class="solution">3</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Nommez le plus grand nombre de balises de tableaux possible.</div>
+					<div class="reponse">
+						<span largeur="2" class="solution"></span>
+						<span largeur="2" class="solution"></span>
+						<span largeur="2" class="solution"></span>
+						<span largeur="2" class="solution"></span>
+						<span largeur="2" class="solution"></span>
+						<span largeur="2" class="solution"></span>
+						<span largeur="2" class="solution"></span>
+						<span largeur="2" class="solution"></span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Nommez les 2 attributs spécifiques à la balise <code>&lt;td&gt;</code>. Lequel fusionne des cellules côte à côte?</div>
+					<div class="reponse">
+						<span class="solution">colspan</span>
+						<span class="solution">rowspan</span>
+						<span class="solution">colspan</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-on mettre plusieurs...
+						<br/>... <code>&lt;tbody&gt;</code> dans un tableau?
+						<br/>... <code>&lt;caption&gt;</code> dans un tableau?
+						<br/>... tableaux dans une page?
+						<br/>... lignes dans une en-tête de tableau?</div>
+					<div class="reponse">
+						<br />
+						<span class="solution">oui</span>
+						<span class="solution">non</span>
+						<span class="solution">oui</span>
+						<span class="solution">oui</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quel sélecteur vais-je utiliser pour affecter la bordure des cellules du tableau dont la classe est « gagnants »?</div>
+					<div class="reponse">
+						<span class="solution">td.gagnant</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle propriété sert uniquement aux tableaux?</div>
+					<div class="reponse">
+						<span class="solution">border-collapse</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Quelle balise remplace la balise <code>&lt;td&gt;</code>?</div>
+					<div class="reponse">
+						<span class="solution">th</span>
+					</div>
+				</div>
+				<div class="question">
+					<div>Peut-elle aussi être fusionnée à une autre?</div>
+					<div class="reponse">
+						<span class="solution">oui</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

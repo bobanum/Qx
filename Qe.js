@@ -1,20 +1,6 @@
 /*jslint esnext:true, browser:true*/
+/*global Feuillet*/
 class Qe {
-	static composerTableau(tbody) {
-		if (tbody.attributes.getNamedItem("taille")) {
-			var taille = tbody.attributes.getNamedItem("taille").value;
-			tbody.style.fontSize = taille;
-		}
-		var table = document.createElement("table");
-		table.className = "qe";
-		// Ajout de l'entete
-		table.appendChild(this.creerEntete(tbody, document.title));
-		// Ajout du pied
-		table.appendChild(this.creerPied(tbody));
-		table.appendChild(tbody.cloneNode(true));
-		return table;
-	}
-
 	static preparerImpression() {
 		var div = document.getElementById("printdiv");
 		if (div) {
@@ -23,11 +9,12 @@ class Qe {
 		div = document.body.appendChild(document.createElement("div"));
 		div.id = "printdiv";
 		for (var i = 0; i < 4; i++) {
-			if (i === 3 && window.courant.length === 3) {
+			if (i === 3 && Qe.courant.length === 3) {
 				continue;
 			}
-			var table = this.composerTableau(window.courant[i % window.courant.length]);
-			div.appendChild(table).className += " print";
+			var table = this.composerTableau(Qe.courant[i % Qe.courant.length]);
+			div.appendChild(table);
+			table.classList.add("print");
 		}
 	}
 
@@ -36,50 +23,7 @@ class Qe {
 		window.print();
 	}
 
-	static gererSolutions() {
-		var ss = document.getElementsByTagName("solution");
-		while (ss.length) {
-			var s = ss[0];
-			var divs = this.creerSolution(s);
-			//s.parentNode.insertBefore(divs, s);
-			//s.parentNode.removeChild(s);
-			s.parentNode.replaceChild(divs, s);
-		}
-		return;
-	}
 
-	static creerSolution(s) {
-		var pre = this.attr(s, "pre", "- ");
-		if (pre === "") {
-			pre = "\u00a0";
-		}
-		var post = this.attr(s, "post");
-		var hauteur = this.attr(s, "hauteur");
-		var largeur = this.attr(s, "largeur", 1);
-		var div = document.createElement("div");
-		if (this.attr(s, "cacher", "false") === "true") {
-			div.style.display = "none";
-		}
-		if (hauteur !== "") {
-			div.style.lineHeight = hauteur * 1.2;
-		}
-		if (largeur !== 1) {
-			div.style.cssFloat = "left";
-			div.style.width = 100 / largeur + "%";
-		}
-		//div.style.border = "1px solid black";
-		var span = div.appendChild(document.createElement("span"));
-		span.appendChild(document.createTextNode(pre));
-		span = div.appendChild(document.createElement("span"));
-		span.className = "solution";
-		span.val = parseInt(this.attr(s, "val", "1"));
-		//span.appendChild(document.createTextNode(s.innerHTML));
-		span.innerHTML = s.innerHTML;
-		span = div.appendChild(document.createElement("span"));
-		span.style.cssFloat = "right";
-		span.appendChild(document.createTextNode(post));
-		return div;
-	}
 
 	static attr(element, nom, defaut) {
 		defaut = defaut || "";
@@ -93,79 +37,10 @@ class Qe {
 	}
 
 	static ajusterTitre(titre) {
-		titre = titre || document.body.title + " " + window.courant[0].title;
-		var th = document.getElementById("titreFormulaire");
+		titre = titre || document.body.title + " " + Qe.courant[0].title;
+		var th = document.getElementById("titreFeuillet");
 		th.innerHTML = titre;
 		document.title = titre;
-	}
-
-	static creerEntete(tbody, titre) {
-		titre = titre || "Questions express";
-		var thead = document.createElement("thead");
-		var tr = thead.appendChild(document.createElement("tr"));
-		var th = tr.appendChild(document.createElement("th"));
-		th.className = "titre";
-		th.colSpan = 2;
-		th.innerHTML = titre;
-		tr = thead.appendChild(this.creerIdentification(tbody));
-		return thead;
-	}
-
-	static creerIdentification(tbody) {
-		var sur = "/" + this.calculerValeur(tbody);
-		var tfoot = document.createElement("tfoot");
-		var tr = tfoot.appendChild(document.createElement("tr"));
-		tr.className = "identification";
-		var td = tr.appendChild(document.createElement("td"));
-		td.innerHTML = "Nom:";
-		td = tr.appendChild(document.createElement("td"));
-		td.className = "reponse";
-		td.innerHTML = "Total: <span>" + sur + "</span>";
-		if (tbody.attributes.getNamedItem("colonne")) {
-			var taille = tbody.attributes.getNamedItem("colonne").value;
-			td.style.width = taille;
-		}
-		return tr;
-	}
-
-	static calculerValeur(tbody) {
-		var sols = tbody.getElementsByTagName("SPAN");
-		var resultat = 0;
-		for (var i = 0; i < sols.length; i++) {
-			var sol = sols[i];
-			if (sol.className === "solution") {
-				var val = sol.val;
-				while (sol.tagName !== "TR") {
-					sol = sol.parentNode;
-				}
-				if (sol.className !== "cacher" && sol.className !== "bonus") {
-					resultat += val;
-				}
-			}
-		}
-		return resultat;
-	}
-
-	static creerPied(tbody) {
-		var titre;
-		if (tbody) {
-			if (tbody.title) { // il s'agit d'un tbody
-				titre = document.body.title + " " + tbody.title;
-			} else {
-				titre = tbody;
-			}
-		} else {
-			titre = "";
-		}
-		var tfoot, tr;
-		tfoot = document.createElement("tfoot");
-		tr = tfoot.appendChild(document.createElement("tr"));
-		var th = tr.appendChild(document.createElement("th"));
-		th.id = "titreFormulaire";
-		th.className = "pied";
-		th.colSpan = 2;
-		th.innerHTML = titre;
-		return tfoot;
 	}
 
 	static validerHauteur(tableau) {
@@ -174,8 +49,7 @@ class Qe {
 		}
 		if (tableau.offsetHeight > 523) {
 			tableau.style.backgroundColor = "pink";
-		}
-		else {
+		} else {
 			tableau.style.backgroundColor = "";
 		}
 		return;
@@ -193,30 +67,6 @@ class Qe {
 			}
 		}
 		return;
-	}
-
-	static augmenter() {
-		var val = parseFloat(this.objet.value) || 12;
-		this.objet.value = val + 1;
-		this.objet.appliquer();
-	}
-
-	static reduire() {
-		var val = parseFloat(this.objet.value) || 12;
-		this.objet.value = val - 1;
-		this.objet.appliquer();
-	}
-
-	static elargir() {
-		var val = parseFloat(this.objet.value) || 9;
-		this.objet.value = val + 1;
-		this.objet.appliquer();
-	}
-
-	static retrecir() {
-		var val = parseFloat(this.objet.value) || 9;
-		this.objet.value = val - 1;
-		this.objet.appliquer();
 	}
 
 	static toggleAfficherReponses() {
@@ -242,173 +92,124 @@ class Qe {
 		l.type = "text/css";
 		head.appendChild(l);
 	}
-
-	static evtChangerTbody() {
-		for (var i = 0; i < window.courant.length; i++) {
-			window.courant[i].style.display = "none";
-		}
-		window.courant = [];
-		var opt = this.firstElementChild;
-		while (opt) {
-			if (opt.selected) {
-				window.courant.push(opt.objet);
-				opt.objet.style.display = "";
-			}
-			opt = opt.nextElementSibling;
-		}
-//		this.ajusterTitre();
-		this.preparerImpression();
-	}
-
-	static evtChgTaille() {
-		var taille = parseFloat(this.value) || 12;
-		if (this.value !== taille + "") {
-			this.value = taille;
-		}
-		this.ss.fontSize = taille + "px";
-	}
-
-	static evtChgLargeur() {
-		var taille = parseFloat(this.value) || 9;
-		if (this.value !== taille + "") {
-			this.value = taille;
-		}
-		this.ss.width = taille + "em";
-	}
-
-	static evtClicTr() {
-		if (this.className === "cacher") {
-			this.className = "";
-		} else {
-			this.className = "cacher";
-		}
-		this.preparerImpression();
-	}
 	// Fonctions se rapportant aux controles
 	static creerControles() {
 		var div = document.createElement('div');
-		div.className = "controles";
+		div.setAttribute("id", "controles");
 		var h1 = div.appendChild(document.createElement('h1')); // Le titre
-		h1.appendChild(document.createTextNode('Controles'));
-		div.appendChild(this.ctrlLargeurColonne(9)); // La largeur de la colonne
-		div.appendChild(this.ctrlTailleTexte(12)); // La taille du texte
+		h1.innerHTML = 'Controles';
+		div.appendChild(this.ctrlLargeurColonne(this.largeur)); // La largeur de la colonne
+		div.appendChild(this.ctrlTailleTexte(this.taille)); // La taille du texte
 		div.appendChild(this.ctrlAfficherSolutions()); // Affichage des réponses
-		div.appendChild(this.ctrlTbody()); // Affichage des réponses
+		div.appendChild(this.ctrlFeuillets()); // Affichage des réponses
 		//div.appendChild(ctrlBtnImprimer());	// Impression
 		return div;
 	}
 
+	static html_label(texte, id) {
+		var resultat = document.createElement('label');
+		resultat.innerHTML = texte;
+		if (id) {
+			resultat.setAttribute("for", id);
+		}
+		return resultat;
+	}
+
+	static html_number(id, val, evt) {
+		var resultat = document.createElement('input');
+		resultat.setAttribute("type", "number");
+		resultat.setAttribute("id", id);
+		resultat.setAttribute("size", 2);
+		resultat.setAttribute("value", val);
+		resultat.addEventListener("change", evt);
+		return resultat;
+	}
+
+	static html_select(id, elements, evt) {
+		var resultat = document.createElement('select');
+		resultat.id = id;
+		resultat.size = "10";
+		resultat.multiple = "multiple";
+		resultat.addEventListener("change", evt);
+		this.feuillets.forEach(function (feuillet) {
+			var texte = feuillet.titre + " [" + feuillet.valeur + "]";
+			var option = resultat.appendChild(document.createElement('option'));
+			option.objet = feuillet;
+
+			option.innerHTML = texte;
+			option.setAttribute("value", texte);
+		});
+//		elements.forEach(function (e) {
+//			if (!e.classList.contains("inactif")) {
+//				var texte = e.title + " [" + e.obj.calculerValeur() + "]";
+//				var option = resultat.appendChild(document.createElement('option'));
+//				option.objet = e;
+//
+//				option.innerHTML = texte;
+//				option.setAttribute("value", texte);
+//			}
+//
+//		}, this);
+		return resultat;
+	}
+
 	static ctrlLargeurColonne(val) {
-		val = val || 9;
-		var div = document.createElement('div');
-		div.style.textAlign = "right";
+		val = val || 30;
+		var id = "largeurcolonne";
+		var resultat = document.createElement('div');
+		resultat.setAttribute("id", "champ_" + id);
 		// Le texte
-		var label = div.appendChild(document.createElement('label'));
-		label.htmlFor = "largeurcolonne";
-		label.appendChild(document.createTextNode('Largeur de la colonne de réponses : '));
+		resultat.appendChild(this.html_label("Largeur des réponses", id));
 		// Le champ
-		var input = div.appendChild(document.createElement('input'));
-		input.type = "text";
-		input.id = "largeurcolonne";
-		input.size = 2;
-		input.value = val;
-		input.style.textAlign = "right";
-		input.onchange = input.appliquer = this.evtChgLargeur;
-		input.ss = this.trouverSS('td.reponse');
-		div.appendChild(document.createTextNode('em '));
-		// Le bouton hausser
-		var img = div.appendChild(document.createElement('img'));
-		img.src = "images/hausser.png";
-		img.alt = "Élargir";
-		img.objet = input;
-		img.onclick = this.elargir;
-		// Le bouton baisser
-		img = div.appendChild(document.createElement('img'));
-		img.src = "images/baisser.png";
-		img.alt = "Rétrécir";
-		img.objet = input;
-		img.onclick = this.retrecir;
-		return div;
+		var input = resultat.appendChild(this.html_number(id, val, this.evt.largeur.change));
+		input.setAttribute("step", "1");
+		var span = resultat.appendChild(document.createElement('span'));
+		span.innerHTML = this.largeur_unite;
+		return resultat;
 	}
 
 	static ctrlTailleTexte(val) {
 		val = val || 14;
-		var div = document.createElement('div');
-		div.style.textAlign = "right";
+		var id = "taillefonte";
+		var resultat = document.createElement('div');
+		resultat.setAttribute("id", "champ_" + id);
 		// Le texte
-		var label = div.appendChild(document.createElement('label'));
-		label.htmlFor = "taillefonte";
-		label.appendChild(document.createTextNode('Taille du texte : '));
+		resultat.appendChild(this.html_label("Taille du texte", id));
+
 		// Le champ de texte
-		var input = div.appendChild(document.createElement('input'));
-		input.type = "text";
-		input.id = label.htmlFor;
-		input.size = 2;
-		input.value = val;
-		input.style.textAlign = "right";
-		input.onchange = input.appliquer = this.evtChgTaille;
-		input.ss = this.trouverSS('table.qe');
-		div.appendChild(document.createTextNode('px '));
-		// Le bouton hausser
-		var img = div.appendChild(document.createElement('img'));
-		img.src = "images/hausser.png";
-		img.alt = "Augmenter";
-		img.objet = input;
-		img.onclick = this.augmenter;
-		// Le bouton baisser
-		img = div.appendChild(document.createElement('img'));
-		img.src = "images/baisser.png";
-		img.alt = "Réduire";
-		img.objet = input;
-		img.onclick = this.reduire;
-		return div;
+		var input = resultat.appendChild(this.html_number(id, val, this.evt.taille.change));
+		input.setAttribute("step", ".5");
+		var span = resultat.appendChild(document.createElement('span'));
+		span.innerHTML = this.taille_unite;
+		return resultat;
 	}
 
 	static ctrlAfficherSolutions(val) {
 		val = val || true;
-		var div = document.createElement('div');
-		div.style.textAlign = "right";
-		var label = div.appendChild(document.createElement('label'));
-		label.htmlFor = "afficherreponses";
-		label.appendChild(document.createTextNode('Afficher les réponses : '));
+		var id = "afficherreponses";
+		var resultat = document.createElement('div');
+		resultat.setAttribute("id", "champ_" + id);
+		resultat.appendChild(this.html_label("Afficher les réponses", id));
 		// Le champ de texte
-		var input = div.appendChild(document.createElement('input'));
+		var input = resultat.appendChild(document.createElement('input'));
 		input.type = "checkbox";
-		input.id = input.value = label.htmlFor;
+		input.id = input.value = id;
 		input.checked = val;
 		input.onchange = this.toggleAfficherReponses;
-		return div;
+		return resultat;
 	}
 
-	static ctrlTbody(val) {
+	static ctrlFeuillets(val) {
 		val = val || "";
-		var div = document.createElement('div');
-		div.style.textAlign = "right";
-		var label = div.appendChild(document.createElement('label'));
-		label.htmlFor = "choixformulaire";
-		label.appendChild(document.createTextNode('Formulaire : '));
+		var id = "choixfeuillet";
+		var resultat = document.createElement('div');
+		resultat.setAttribute("id", "champ_" + id);
+		resultat.appendChild(this.html_label("Feuillet", id));
 		// Le champ de texte
-		var select = div.appendChild(document.createElement('select'));
-		select.id = label.htmlFor;
-		select.size = "10";
-		select.multiple = "multiple";
-		select.onchange = this.evtChangerTbody;
-		var tbs = document.getElementsByTagName("TBODY");
-		var option, courant;
-		for (var i = 0; i < tbs.length; i++) {
-			var tbody = tbs[i];
-			if (tbody.className.substr(0, 7) !== "inactif") {
-				option = select.appendChild(document.createElement('option'));
-				courant = option;
-				option.objet = tbody;
-				option.text = option.value = tbody.title + " [" + this.calculerValeur(tbody) + "]";
-			}
-		}
-		if (courant) {
-			courant.selected = true;
-		}
-		option.onchange = null;
-		return div;
+		var feuillets = document.querySelectorAll("div.feuillet");
+		var select = resultat.appendChild(this.html_select(id, feuillets, this.evt.feuillet.change));
+		select.setAttribute("size", feuillets.length);
+		return resultat;
 	}
 
 	static ctrlBtnImprimer() {
@@ -419,42 +220,99 @@ class Qe {
 		return div;
 
 	}
+	static get taille() {
+		return this._taille;
+	}
+	static set taille(taille) {
+		this._taille = parseFloat(taille) || 10;
+		this.regles.feuille.fontSize = this._taille + this.taille_unite;
+		return taille;
+	}
+	static get largeur() {
+		return this._largeur;
+	}
+	static set largeur(largeur) {
+		this._largeur = parseFloat(largeur) || 30;
+		this.regles.reponse.width = this._largeur + this.largeur_unite;
+		return largeur;
+	}
 	static load() {
+		this.titre = document.body.title;
 		//ajouterSS();
-		// Trouver les tbody qui sont utilisables
-		var tbs = document.getElementsByTagName("TBODY");
-		for (var i = 0; i < tbs.length; i++) {
-			var tbody = tbs[i];
-			var c = tbody.className.substr(0, 7);
-			tbody.style.display = "none";
+		// Trouver les feuillet qui sont utilisables
+		var feuillets = document.querySelectorAll("div.feuillet");
+		feuillets.forEach(function (f) {
+			var feuillet = new Feuillet(f);
+			this.feuillets.push(feuillet);
+			feuillet.formater();
 
-			if (c !== "inactif") {
-				window.courant = [tbody];
+			if (feuillet.actif) {
+				Qe.courant = [feuillet];
 			}
-			// On ajoute un evenement pour masquer
-			var trs = tbody.getElementsByTagName("TR");
-			for (var j = 0; j < trs.length; j++) {
-				trs[j].addEventListener('mousedown', this.evtClicTr, true);
-			}
-		}
-		if (window.courant) {
-			window.courant[0].style.display = "";
-		}
-		this.gererSolutions();
+		}, this);
 		document.body.insertBefore(this.creerControles(), document.body.firstChild);
-		var table = document.getElementById("qe");
-		table.className = "qe";
+		//		var table = document.getElementById("qe");
+		//		table.className = "qe";
 		// Ajout du pied
-		table.insertBefore(this.creerPied(window.courant[0]), table.firstChild);
+		//		table.insertBefore(this.creerPied(Qe.courant[0]), table.firstChild);
 		// Ajout de l'entete
-		table.insertBefore(this.creerEntete(window.courant[0], document.title), table.firstChild);
-	//	this.ajusterTitre();
-		this.preparerImpression();
+		//		table.insertBefore(this.creerEntete(Qe.courant[0], document.title), table.firstChild);
+		//	this.ajusterTitre();
+		//		this.preparerImpression();
 	}
 	static init() {
-		window.onload = function () {
-			Qe.load();
+		this.taille_unite = "pt";
+		this.largeur_unite = "%";
+		this.courant = [];
+		this.feuillets = [];
+		this._taille = 10;
+		this._largeur = 30;
+		this.regles = {
+			solution: this.trouverSS('span.solution'),
+			reponse: this.trouverSS('div.reponse'),
+			feuille: this.trouverSS('div.feuillet')
 		};
+		this.evt = {
+			feuillet: {
+				change: function () {
+					//					this.obj.changerTaille();
+					for (var i = 0; i < Qe.courant.length; i++) {
+						Qe.courant[i].style.display = "none";
+					}
+					Qe.courant = [];
+					var opt = this.firstElementChild;
+					while (opt) {
+						if (opt.selected) {
+							Qe.courant.push(opt.objet);
+							opt.objet.style.display = "";
+						}
+						opt = opt.nextElementSibling;
+					}
+					//		this.ajusterTitre();
+					Qe.preparerImpression();
+				}
+			},
+			taille: {
+				change: function () {
+					Qe.taille = this.value;
+					if (this.value !== Qe.taille + "") {
+						this.value = Qe.taille;
+					}
+				}
+			},
+			largeur: {
+				change: function () {
+					Qe.largeur = this.value;
+					if (this.value !== Qe.largeur + "") {
+						this.value = Qe.largeur;
+					}
+				}
+			}
+
+		};
+		window.addEventListener("load", function () {
+			Qe.load();
+		});
 	}
 }
 Qe.init();
