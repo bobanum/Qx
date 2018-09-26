@@ -1,5 +1,5 @@
 /*jslint esnext:true, browser:true*/
-/*global Feuillet, App*/
+/*global App*/
 class Qx {
 	static preparerImpression() {
 		var div = document.getElementById("printdiv");
@@ -18,12 +18,16 @@ class Qx {
 		}
 	}
 
+	static set solutionsVisibles(val) {
+		this.regles.solution.display = (val) ? "" : "none";
+	}
+	static get solutionsVisibles() {
+		return this.regles.solution.display !== "none";
+	}
 	static imprimer() {
 		this.preparerImpression();
 		window.print();
 	}
-
-
 
 	static attr(element, nom, defaut) {
 		defaut = defaut || "";
@@ -69,29 +73,10 @@ class Qx {
 		return;
 	}
 
-	static toggleAfficherReponses() {
-		if (this.ss === undefined) {
-			//this.ss=this.trouverSS('td.reponse *, span.solution');	//XXX
-			this.ss = this.trouverSS('span.solution');
-		}
-		if (this.checked) {
-			this.ss.display = "";
-		} else {
-			this.ss.display = "none";
-		}
-		return;
+	static changeAfficherSolutions() {
+		this.obj.solutionsVisibles = this.checked;
 	}
 
-	static ajouterSS() {
-		var head = document.getElementsByTagName("head");
-		head = head[0];
-		var l = document.createElement('link');
-		l.id = "ss";
-		l.rel = "stylesheet";
-		l.href = "images/qx.css";
-		l.type = "text/css";
-		head.appendChild(l);
-	}
 	// Fonctions se rapportant aux controles
 	static creerControles() {
 		var div = document.createElement('div');
@@ -106,7 +91,7 @@ class Qx {
 		return div;
 	}
 
-	static html_label(texte, id) {
+	static dom_label(texte, id) {
 		var resultat = document.createElement('label');
 		resultat.innerHTML = texte;
 		if (id) {
@@ -159,7 +144,7 @@ class Qx {
 		var resultat = document.createElement('div');
 		resultat.setAttribute("id", "champ_" + id);
 		// Le texte
-		resultat.appendChild(this.html_label("Largeur des réponses", id));
+		resultat.appendChild(this.dom_label("Largeur des réponses", id));
 		// Le champ
 		var input = resultat.appendChild(this.html_number(id, val, this.evt.largeur.change));
 		input.setAttribute("step", "1");
@@ -174,7 +159,7 @@ class Qx {
 		var resultat = document.createElement('div');
 		resultat.setAttribute("id", "champ_" + id);
 		// Le texte
-		resultat.appendChild(this.html_label("Taille du texte", id));
+		resultat.appendChild(this.dom_label("Taille du texte", id));
 
 		// Le champ de texte
 		var input = resultat.appendChild(this.html_number(id, val, this.evt.taille.change));
@@ -184,18 +169,26 @@ class Qx {
 		return resultat;
 	}
 
-	static ctrlAfficherSolutions(val) {
-		val = val || true;
-		var id = "afficherreponses";
+	static ctrlAfficherSolutions(val = true) {
+		var name = "afficherreponses";
 		var resultat = document.createElement('div');
-		resultat.setAttribute("id", "champ_" + id);
-		resultat.appendChild(this.html_label("Afficher les réponses", id));
+		resultat.setAttribute("id", "champ_" + name);
+		resultat.appendChild(this.dom_label("Afficher les réponses", name + "_true"));
 		// Le champ de texte
-		var input = resultat.appendChild(document.createElement('input'));
-		input.type = "checkbox";
-		input.id = input.value = id;
-		input.checked = val;
-		input.onchange = this.toggleAfficherReponses;
+		resultat.appendChild(this.dom_checkbox(name, "true", val, this.evt.afficherSolutions.change));
+		return resultat;
+	}
+
+	static dom_checkbox(name, value, checked, change) {
+		var resultat = document.createElement('input');
+		resultat.setAttribute("type", "checkbox");
+		resultat.setAttribute("name", name);
+		resultat.setAttribute("id", name + "_" + value);
+		resultat.setAttribute("value", value);
+		resultat.setAttribute("type", "checkbox");
+		resultat.checked = checked;
+		resultat.addEventListener("change", change);
+		resultat.obj = this;
 		return resultat;
 	}
 
@@ -204,9 +197,9 @@ class Qx {
 		var id = "choixfeuillet";
 		var resultat = document.createElement('div');
 		resultat.setAttribute("id", "champ_" + id);
-		resultat.appendChild(this.html_label("Feuillet", id));
+		resultat.appendChild(this.dom_label("Feuillet", id));
 		// Le champ de texte
-		var feuillets = document.querySelectorAll("div.feuillet");
+		var feuillets = document.querySelectorAll("*.feuillet");
 		var select = resultat.appendChild(this.html_select(id, feuillets, this.evt.feuillet.change));
 		select.setAttribute("size", feuillets.length);
 		return resultat;
@@ -233,19 +226,24 @@ class Qx {
 	}
 	static set largeur(largeur) {
 		this._largeur = parseFloat(largeur) || 30;
-		this.regles.reponse.width = this._largeur + this.largeur_unite;
+		this.regles.reponse.flex = "0 0 " + this._largeur + this.largeur_unite;
 		return largeur;
 	}
-	static load() {
+	static ajouterStyle() {
+		var resultat = document.head.appendChild(document.createElement("style"));
+		resultat.innerHTML = "span.solution{}div.reponse{}div.feuillet{}";
+		var regles = resultat.sheet.cssRules;
 		this.regles = {
-			solution: this.trouverSS('span.solution'),
-			reponse: this.trouverSS('div.reponse'),
-			feuille: this.trouverSS('div.feuillet')
+			solution: regles[0].style,
+			reponse: regles[1].style,
+			feuille: regles[2].style,
 		};
+	}
+	static load() {
+		this.ajouterStyle();
 		this.titre = document.body.title;
-		//ajouterSS();
 		// Trouver les feuillet qui sont utilisables
-		var feuillets = document.querySelectorAll("div.feuillet");
+		var feuillets = document.querySelectorAll("*.feuillet");
 		feuillets.forEach(function (f) {
 			var feuillet = new App.Feuillet(f);
 			this.feuillets.push(feuillet);
@@ -275,21 +273,23 @@ class Qx {
 		this._taille = 10;
 		this._largeur = 30;
 		this.evt = {
+			afficherSolutions: {
+				change: function (e) {
+					e.target.obj.solutionsVisibles = e.target.checked;
+				}
+			},
 			feuillet: {
 				change: function () {
 					//					this.obj.changerTaille();
-					Qx.courant.forEach(courant => {
-						courant.domaine.style.display = "none";
+					Qx.courant.forEach(feuillet => {
+						feuillet.courant = false;
 					});
-					Qx.courant = [];
-					var opt = this.firstElementChild;
-					while (opt) {
-						if (opt.selected) {
-							Qx.courant.push(opt.objet);
-							opt.objet.domaine.style.display = "";
-						}
-						opt = opt.nextElementSibling;
-					}
+					Qx.courant = Array.from(this.children);
+					Qx.courant = Qx.courant.filter(opt => opt.selected);
+					Qx.courant = Qx.courant.map(opt => opt.objet);
+					Qx.courant.forEach(feuillet => {
+						feuillet.courant = true;
+					});
 					//		this.ajusterTitre();
 					Qx.preparerImpression();
 				}

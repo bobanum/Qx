@@ -18,13 +18,22 @@ div.page {
 	width: 8.5in;
 	height: 11in;
 	background-color: white;
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
 }
 div#qx {
 //	border: 1px solid black;
 }
-div.feuillet {
+div.feuillets {
+	display: flex;
+	flex-wrap: wrap;
+	& > * {
+		margin: .5em;
+		background-color: white;
+	}
+}
+article.feuillet {
 //	border: 1px solid black;
 	display: flex;
 	flex-direction: column;
@@ -45,6 +54,15 @@ div.feuillet {
 		margin-top: 1em;
 		font-family: @font-titre;
 	}
+	& > div.body {
+		flex: 1 0 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	&:not(.courant) {
+		display: none;
+	}
 }
 header > h1 {
 	margin: 0;
@@ -60,12 +78,12 @@ div.question {
 		flex: 1 1 auto;
 	}
 	& + div.question {
-		border-top: 1px solid black;;
+		border-top: 1px solid black;
 	}
 }
 div.reponse {
 //	border: solid;
-	flex: 0 0 auto;
+	flex: 0 0 30%;
 }
 table.qx {
 	border-collapse: collapse;

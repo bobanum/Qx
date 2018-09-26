@@ -26,6 +26,16 @@ class Feuillet {
 	get valeur() {
 		return this.calculerValeur();
 	}
+	set courant(val) {
+		if (val) {
+			this.domaine.classList.add("courant");
+		} else {
+			this.domaine.classList.remove("courant");
+		}
+	}
+	get courant() {
+		return this.domaine.classList.contains("courant");
+	}
 	prendreQuestions() {
 		var questions = this.domaine.querySelectorAll("div.question");
 		questions.forEach(function (question) {
@@ -51,9 +61,14 @@ class Feuillet {
 	}
 
 	formater() {
-		//		debugger;
+		var body = document.createElement("div");
+		body.classList.add("body");
+		while (this.domaine.firstChild) {
+			body.appendChild(this.domaine.firstChild);
+		}
 		this.domaine.appendChild(this.creerEntete());
 		this.domaine.appendChild(this.creerPied());
+		this.domaine.appendChild(body);
 		return this.domaine;
 	}
 

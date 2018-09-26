@@ -18,10 +18,19 @@ div.page {
   width: 8.5in;
   height: 11in;
   background-color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+div.feuillets {
   display: flex;
   flex-wrap: wrap;
 }
-div.feuillet {
+div.feuillets > * {
+  margin: .5em;
+  background-color: white;
+}
+article.feuillet {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -30,18 +39,27 @@ div.feuillet {
   box-sizing: border-box;
   padding: .25in;
 }
-div.feuillet > header,
-div.feuillet > footer {
+article.feuillet > header,
+article.feuillet > footer {
   font-size: 1rem;
 }
-div.feuillet > header {
+article.feuillet > header {
   order: -1;
   margin-bottom: 1em;
 }
-div.feuillet > footer {
+article.feuillet > footer {
   order: 1;
   margin-top: 1em;
   font-family: impact;
+}
+article.feuillet > div.body {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+article.feuillet:not(.courant) {
+  display: none;
 }
 header > h1 {
   margin: 0;
@@ -61,7 +79,7 @@ div.question + div.question {
   border-top: 1px solid black;
 }
 div.reponse {
-  flex: 0 0 auto;
+  flex: 0 0 30%;
 }
 table.qx {
   border-collapse: collapse;
