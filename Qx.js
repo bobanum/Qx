@@ -1,6 +1,6 @@
 /*jslint esnext:true, browser:true*/
-/*global Feuillet*/
-class Qe {
+/*global Feuillet, App*/
+class Qx {
 	static preparerImpression() {
 		var div = document.getElementById("printdiv");
 		if (div) {
@@ -9,10 +9,10 @@ class Qe {
 		div = document.body.appendChild(document.createElement("div"));
 		div.id = "printdiv";
 		for (var i = 0; i < 4; i++) {
-			if (i === 3 && Qe.courant.length === 3) {
+			if (i === 3 && Qx.courant.length === 3) {
 				continue;
 			}
-			var table = this.composerTableau(Qe.courant[i % Qe.courant.length]);
+			var table = this.composerTableau(Qx.courant[i % Qx.courant.length]);
 			div.appendChild(table);
 			table.classList.add("print");
 		}
@@ -37,7 +37,7 @@ class Qe {
 	}
 
 	static ajusterTitre(titre) {
-		titre = titre || document.body.title + " " + Qe.courant[0].title;
+		titre = titre || document.body.title + " " + Qx.courant[0].title;
 		var th = document.getElementById("titreFeuillet");
 		th.innerHTML = titre;
 		document.title = titre;
@@ -88,7 +88,7 @@ class Qe {
 		var l = document.createElement('link');
 		l.id = "ss";
 		l.rel = "stylesheet";
-		l.href = "images/qe.css";
+		l.href = "images/qx.css";
 		l.type = "text/css";
 		head.appendChild(l);
 	}
@@ -237,82 +237,81 @@ class Qe {
 		return largeur;
 	}
 	static load() {
+		this.regles = {
+			solution: this.trouverSS('span.solution'),
+			reponse: this.trouverSS('div.reponse'),
+			feuille: this.trouverSS('div.feuillet')
+		};
 		this.titre = document.body.title;
 		//ajouterSS();
 		// Trouver les feuillet qui sont utilisables
 		var feuillets = document.querySelectorAll("div.feuillet");
 		feuillets.forEach(function (f) {
-			var feuillet = new Feuillet(f);
+			var feuillet = new App.Feuillet(f);
 			this.feuillets.push(feuillet);
 			feuillet.formater();
 
 			if (feuillet.actif) {
-				Qe.courant = [feuillet];
+				Qx.courant = [feuillet];
 			}
 		}, this);
 		document.body.insertBefore(this.creerControles(), document.body.firstChild);
-		//		var table = document.getElementById("qe");
-		//		table.className = "qe";
+		//		var table = document.getElementById("qx");
+		//		table.className = "qx";
 		// Ajout du pied
-		//		table.insertBefore(this.creerPied(Qe.courant[0]), table.firstChild);
+		//		table.insertBefore(this.creerPied(Qx.courant[0]), table.firstChild);
 		// Ajout de l'entete
-		//		table.insertBefore(this.creerEntete(Qe.courant[0], document.title), table.firstChild);
+		//		table.insertBefore(this.creerEntete(Qx.courant[0], document.title), table.firstChild);
 		//	this.ajusterTitre();
 		//		this.preparerImpression();
+		return Promise.resolve();
 	}
 	static init() {
+		App[this.name] = this;
 		this.taille_unite = "pt";
 		this.largeur_unite = "%";
 		this.courant = [];
 		this.feuillets = [];
 		this._taille = 10;
 		this._largeur = 30;
-		this.regles = {
-			solution: this.trouverSS('span.solution'),
-			reponse: this.trouverSS('div.reponse'),
-			feuille: this.trouverSS('div.feuillet')
-		};
 		this.evt = {
 			feuillet: {
 				change: function () {
 					//					this.obj.changerTaille();
-					for (var i = 0; i < Qe.courant.length; i++) {
-						Qe.courant[i].style.display = "none";
-					}
-					Qe.courant = [];
+					Qx.courant.forEach(courant => {
+						courant.domaine.style.display = "none";
+					});
+					Qx.courant = [];
 					var opt = this.firstElementChild;
 					while (opt) {
 						if (opt.selected) {
-							Qe.courant.push(opt.objet);
-							opt.objet.style.display = "";
+							Qx.courant.push(opt.objet);
+							opt.objet.domaine.style.display = "";
 						}
 						opt = opt.nextElementSibling;
 					}
 					//		this.ajusterTitre();
-					Qe.preparerImpression();
+					Qx.preparerImpression();
 				}
 			},
 			taille: {
 				change: function () {
-					Qe.taille = this.value;
-					if (this.value !== Qe.taille + "") {
-						this.value = Qe.taille;
+					Qx.taille = this.value;
+					if (this.value !== Qx.taille + "") {
+						this.value = Qx.taille;
 					}
 				}
 			},
 			largeur: {
 				change: function () {
-					Qe.largeur = this.value;
-					if (this.value !== Qe.largeur + "") {
-						this.value = Qe.largeur;
+					Qx.largeur = this.value;
+					if (this.value !== Qx.largeur + "") {
+						this.value = Qx.largeur;
 					}
 				}
 			}
 
 		};
-		window.addEventListener("load", function () {
-			Qe.load();
-		});
 	}
 }
-Qe.init();
+Qx.init();

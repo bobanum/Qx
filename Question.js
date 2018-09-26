@@ -1,4 +1,5 @@
 /*jslint esnext:true, browser:true*/
+/*global App */
 class Question {
 	constructor(domaine) {
 		this.domaine = domaine;
@@ -51,12 +52,12 @@ class Question {
 		return resultat;
 	}
 	creerSolution(solution) {
-		var pre = solution.getAttribute("pre") || "- ";
+		var pre = solution.getAttribute("pre") || "-";
 		if (pre === "") {
 			pre = "\u00a0";
 		}
-		var post = solution.getAttribute("post");
-		var hauteur = solution.getAttribute("hauteur");
+		var post = solution.getAttribute("post") || "";
+		var hauteur = solution.getAttribute("hauteur") || "";
 		var largeur = solution.getAttribute("largeur") || 1;
 		var div = document.createElement("div");
 		if (solution.getAttribute("cacher") && solution.getAttribute("cacher") === "true") {
@@ -75,9 +76,11 @@ class Question {
 		span.className = "solution";
 		span.val = parseInt(solution.getAttribute("val")) || "1";
 		span.innerHTML = solution.innerHTML;
-		span = div.appendChild(document.createElement("span"));
-		span.style.cssFloat = "right";
-		span.appendChild(document.createTextNode(post));
+		if (post) {
+			span = div.appendChild(document.createElement("span"));
+			span.style.cssFloat = "right";
+			span.appendChild(document.createTextNode(post));
+		}
 		return div;
 	}
 
@@ -94,6 +97,7 @@ class Question {
 	}
 
 	static init() {
+		App[this.name] = this;
 		this.evt = {
 			question: {
 				click: function () {

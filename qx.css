@@ -63,7 +63,7 @@ div.question + div.question {
 div.reponse {
   flex: 0 0 auto;
 }
-table.qe {
+table.qx {
   border-collapse: collapse;
   font-size: 12px;
   float: left;
@@ -71,15 +71,15 @@ table.qe {
   height: 4.95in;
   margin: .25in;
 }
-table.qe tbody {
+table.qx tbody {
   border: 3px solid;
 }
-table.qe tr.identification td.reponse span {
+table.qx tr.identification td.reponse span {
   float: right;
   font-size: .7em;
   zzzmargin-top: 0.2em;
 }
-table.qe td {
+table.qx td {
   border: 1px solid;
   /* line-height:1.2em */
 }
@@ -229,7 +229,7 @@ div#controles div.bouton {
   div#controles {
     display: none;
   }
-  #qe {
+  #qx {
     display: none;
   }
 }

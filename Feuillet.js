@@ -1,5 +1,5 @@
 /*jslint esnext:true, browser:true*/
-/*global Question*/
+/*global App*/
 class Feuillet {
 	constructor(domaine) {
 		this.domaine = domaine;
@@ -29,7 +29,7 @@ class Feuillet {
 	prendreQuestions() {
 		var questions = this.domaine.querySelectorAll("div.question");
 		questions.forEach(function (question) {
-			this.questions.push(new Question(question));
+			this.questions.push(new App.Question(question));
 		}, this);
 	}
 	composerTableau() {
@@ -40,7 +40,7 @@ class Feuillet {
 			feuillet.style.fontSize = taille;
 		}
 		var resultat = document.createElement("table");
-		resultat.className = "qe";
+		resultat.className = "qx";
 		// Ajout de l'entete
 		//		resultat.appendChild(this.creerEntete(feuillet, document.title));
 		// Ajout du pied
@@ -61,7 +61,7 @@ class Feuillet {
 		var header = document.createElement("header");
 		var h1 = header.appendChild(document.createElement("h1"));
 		h1.className = "titre";
-		h1.innerHTML = this.titre;
+		h1.innerHTML = App.Qx.titre;
 		header.appendChild(this.creerIdentification());
 		return header;
 	}
@@ -113,6 +113,7 @@ class Feuillet {
 	}
 
 	static init() {
+		App[this.name] = this;
 		this.evt = {
 		};
 	}
