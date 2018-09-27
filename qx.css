@@ -8,8 +8,6 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #2a4d6a;
-  background-image: url(images/metal.png);
 }
 div.interface {
   margin: 1em;
@@ -222,19 +220,26 @@ div#controles div.bouton {
   padding: 2px;
 }
 @page {
-  size: 8.5in 11in ;
+  size: 8.5in 11in;
   width: 8.5in;
   height: 11in;
   margin: 0;
 }
 /* POUR L'IMPRESSION */
 @media screen {
-  table.print {
+  body {
+    background-color: #2a4d6a;
+    background-image: url(images/metal.png);
+  }
+  div#print {
     display: none;
   }
 }
 @media print {
   span.solution {
+    display: none;
+  }
+  div.interface {
     display: none;
   }
   td.reponse br {

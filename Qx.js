@@ -2,20 +2,14 @@
 /*global App*/
 class Qx {
 	static preparerImpression() {
-		var div = document.getElementById("printdiv");
+		var div = document.getElementById("print");
 		if (div) {
 			div.parentNode.removeChild(div);
 		}
 		div = document.body.appendChild(document.createElement("div"));
-		div.id = "printdiv";
-		for (var i = 0; i < 4; i++) {
-			if (i === 3 && Qx.courant.length === 3) {
-				continue;
-			}
-			var table = this.composerTableau(Qx.courant[i % Qx.courant.length]);
-			div.appendChild(table);
-			table.classList.add("print");
-		}
+		div.setAttribute("id", "print");
+		var feuillets = this.courant;
+		this.ajouterPage(Array.from(feuillets), div);
 	}
 
 	static set solutionsVisibles(val) {
@@ -29,6 +23,27 @@ class Qx {
 		window.print();
 	}
 
+	static ajouterPage(feuillets, conteneur) {
+		if (feuillets.length > 4) {
+			while (feuillets.length) {
+				this.ajouterPage(feuillets.splice(0,4), conteneur);
+			}
+			return;
+		}
+		var page = conteneur.appendChild(document.createElement("div"));
+		page.classList.add("page");
+		var layouts = [
+			[],
+			[0,0,0,0],
+			[0,1,0,1],
+			[0,1,2],
+			[0,1,2,3],
+		];
+		layouts[feuillets.length].forEach(no => {
+			page.appendChild(feuillets[no].domaine.cloneNode(true));
+		});
+		return;
+	}
 	static attr(element, nom, defaut) {
 		defaut = defaut || "";
 		var a = element.attributes.getNamedItem(nom);
